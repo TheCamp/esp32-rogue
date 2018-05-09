@@ -18,6 +18,9 @@ print("File System Size {:,} - Free Space {:,}".format(fs_size, fs_free))
 
 ## Code management
 
+main.py is the primary file which will be run on start.
+
 ```
 ampy -p /dev/ttyUSB0 <get,put,ls> [<target>]
 ```
+
