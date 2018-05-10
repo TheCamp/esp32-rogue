@@ -1,42 +1,58 @@
-import math
-#import _thread
+import network
+import time
 
-class Zone():
+from ws_connection import ClientClosedError
+from ws_server import WebSocketServer, WebSocketClient
 
-	def __init__(self, width, height):
-		self.width = width
-		self.height = height
+sta_if = network.WLAN(network.STA_IF)
+sta_if.active(True)
+sta_if.connect('THECAMP', '')
 
-	def getStartPosition(self):
-		return {'x': math.floor(self.width / 2), 'y': math.floor(self.height / 2) }
+class TestClient(WebSocketClient):
+    def __init__(self, conn, clients, usernames):
+        self.clients = clients
+        self.usernames = usernames
+        super().__init__(conn)
 
-	def tick():
-		print("meh")
+    def process(self):
+        try:
+            msg = self.connection.read()
+            if not msg:
+                return
+            msg = msg.decode("utf-8")
+            #authenticate with AUTH:USERNAME:<username> still missing password auth and handling of reconnections
+            if msg.startswith('AUTH:'):
+                auth_commands = msg.split(":")
+                if auth_commands[1] == "USERNAME":
+                    if auth_commands[2] in self.usernames:
+                        self.connection.write("AUTH:USERNAME:ERROR:TAKEN")
+                    else:
+                        self.connection.write("AUTH:USERNAME:OK:" + auth_commands[2])
+                        self.usernames.append(auth_commands[2])
+                else:
+                    self.connection.write("AUTH:INCORRECT")
+            else:
+                for client in self.clients:
+                    client.connection.write(msg)
+        except ClientClosedError:
+            self.connection.close()
 
 
-class Object():
+class TestServer(WebSocketServer):
+    def __init__(self):
+        super().__init__("test.html", 10)
 
-	def __init__(self, x, y, char):
-		self.x = x
-		self.y = y
-		self.char = char
+    def _make_client(self, conn):
+        return TestClient(conn,self._clients,self._usernames)
 
-	def move(self, dx, dy):
-		self.x += dx
-		self.y += dy
+while not sta_if.isconnected():
+    time.sleep(5)
 
-class Player(Object):
-
-	def __init__(self, name, *kwargs):
-		self.name = name
-		super(Player, self).__init__(*kwargs)
-
-def main():
-	zone = Zone(10, 10)
-	startLocation = zone.getStartPosition()
-	player = Player('meh', startLocation['x'], startLocation['y'], '@')
-	print(player.x, player.y, player.char)
-
-
-if __name__ == '__main__':
-	main()
+server = TestServer()
+server.start()
+try:
+    while True:
+        server.process_all()
+except KeyboardInterrupt:
+    pass
+server.stop()

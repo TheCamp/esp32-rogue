@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+<script>
+    var ws = new WebSocket("ws://" + location.hostname + ":80");
+    
+    ws.onopen = function () {
+        //ws.send("Hello");
+    };
+    
+    ws.onmessage = function (evt) {
+        document.getElementById("response").innerHTML += evt.data;
+    };
+</script>
+<input type="text" id="new_message" value="Write Something ..."><button onclick="ws.send(document.getElementById('new_message').value);">Try it</button>
+Received: <br/>
+<div id="response">
+    (Received content)
+</div>
+</body>
+</html>
