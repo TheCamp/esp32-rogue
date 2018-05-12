@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>WebSocket Client</title>
+    <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+      grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+      background-color: #2196F3;
+      padding: 10px;
+      width: 500px;
+    }
+    .grid-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      font-size: 15px;
+      text-align: center;
+    }
+    </style>
 </head>
 <body>
 <script>
@@ -13,13 +30,115 @@
     };
     
     ws.onmessage = function (evt) {
-        document.getElementById("response").innerHTML += evt.data;
+        document.getElementById("response").innerHTML += evt.data + "; ";
     };
 </script>
 <input type="text" id="new_message" value="Write Something ..."><button onclick="ws.send(document.getElementById('new_message').value);">Try it</button>
 Received: <br/>
 <div id="response">
-    (Received content)
+    Received: 
+</div>
+<div class="grid-container">
+  <div class="grid-item" id="0x0">0x0</div>
+  <div class="grid-item" id="0x1">0x1</div>
+  <div class="grid-item" id="0x2">0x2</div>
+  <div class="grid-item" id="0x3">0x3</div>  
+  <div class="grid-item" id="0x4">0x4</div>
+  <div class="grid-item" id="0x5">0x5</div>
+  <div class="grid-item" id="0x6">0x6</div>  
+  <div class="grid-item" id="0x7">0x7</div>
+  <div class="grid-item" id="0x8">0x8</div>
+  <div class="grid-item" id="0x9">0x9</div>
+  <div class="grid-item" id="1x0">1x0</div>
+  <div class="grid-item" id="1x1">1x1</div>
+  <div class="grid-item" id="1x2">1x2</div>
+  <div class="grid-item" id="1x3">1x3</div>  
+  <div class="grid-item" id="1x4">1x4</div>
+  <div class="grid-item" id="1x5">1x5</div>
+  <div class="grid-item" id="1x6">1x6</div>  
+  <div class="grid-item" id="1x7">1x7</div>
+  <div class="grid-item" id="1x8">1x8</div>
+  <div class="grid-item" id="1x9">1x9</div>
+  <div class="grid-item" id="2x0">2x0</div>
+  <div class="grid-item" id="2x1">2x1</div>
+  <div class="grid-item" id="2x2">2x2</div>
+  <div class="grid-item" id="2x3">2x3</div>  
+  <div class="grid-item" id="2x4">2x4</div>
+  <div class="grid-item" id="2x5">2x5</div>
+  <div class="grid-item" id="2x6">2x6</div>  
+  <div class="grid-item" id="2x7">2x7</div>
+  <div class="grid-item" id="2x8">2x8</div>
+  <div class="grid-item" id="2x9">2x9</div>
+  <div class="grid-item" id="3x0">3x0</div>
+  <div class="grid-item" id="3x1">3x1</div>
+  <div class="grid-item" id="3x2">3x2</div>
+  <div class="grid-item" id="3x3">3x3</div>  
+  <div class="grid-item" id="3x4">3x4</div>
+  <div class="grid-item" id="3x5">3x5</div>
+  <div class="grid-item" id="3x6">3x6</div>  
+  <div class="grid-item" id="3x7">3x7</div>
+  <div class="grid-item" id="3x8">3x8</div>
+  <div class="grid-item" id="3x9">3x9</div>
+  <div class="grid-item" id="4x0">4x0</div>
+  <div class="grid-item" id="4x1">4x1</div>
+  <div class="grid-item" id="4x2">4x2</div>
+  <div class="grid-item" id="4x3">4x3</div>  
+  <div class="grid-item" id="4x4">4x4</div>
+  <div class="grid-item" id="4x5">4x5</div>
+  <div class="grid-item" id="4x6">4x6</div>  
+  <div class="grid-item" id="4x7">4x7</div>
+  <div class="grid-item" id="4x8">4x8</div>
+  <div class="grid-item" id="4x9">4x9</div>
+  <div class="grid-item" id="5x0">5x0</div>
+  <div class="grid-item" id="5x1">5x1</div>
+  <div class="grid-item" id="5x2">5x2</div>
+  <div class="grid-item" id="5x3">5x3</div>  
+  <div class="grid-item" id="5x4">5x4</div>
+  <div class="grid-item" id="5x5">5x5</div>
+  <div class="grid-item" id="5x6">5x6</div>  
+  <div class="grid-item" id="5x7">5x7</div>
+  <div class="grid-item" id="5x8">5x8</div>
+  <div class="grid-item" id="5x9">5x9</div>
+  <div class="grid-item" id="6x0">6x0</div>
+  <div class="grid-item" id="6x1">6x1</div>
+  <div class="grid-item" id="6x2">6x2</div>
+  <div class="grid-item" id="6x3">6x3</div>  
+  <div class="grid-item" id="6x4">6x4</div>
+  <div class="grid-item" id="6x5">6x5</div>
+  <div class="grid-item" id="6x6">6x6</div>  
+  <div class="grid-item" id="6x7">6x7</div>
+  <div class="grid-item" id="6x8">6x8</div>
+  <div class="grid-item" id="6x9">6x9</div>
+  <div class="grid-item" id="7x0">7x0</div>
+  <div class="grid-item" id="7x1">7x1</div>
+  <div class="grid-item" id="7x2">7x2</div>
+  <div class="grid-item" id="7x3">7x3</div>  
+  <div class="grid-item" id="7x4">7x4</div>
+  <div class="grid-item" id="7x5">7x5</div>
+  <div class="grid-item" id="7x6">7x6</div>  
+  <div class="grid-item" id="7x7">7x7</div>
+  <div class="grid-item" id="7x8">7x8</div>
+  <div class="grid-item" id="7x9">7x9</div>
+  <div class="grid-item" id="8x0">8x0</div>
+  <div class="grid-item" id="8x1">8x1</div>
+  <div class="grid-item" id="8x2">8x2</div>
+  <div class="grid-item" id="8x3">8x3</div>  
+  <div class="grid-item" id="8x4">8x4</div>
+  <div class="grid-item" id="8x5">8x5</div>
+  <div class="grid-item" id="8x6">8x6</div>  
+  <div class="grid-item" id="8x7">8x7</div>
+  <div class="grid-item" id="8x8">8x8</div>
+  <div class="grid-item" id="8x9">8x9</div>
+  <div class="grid-item" id="9x0">9x0</div>
+  <div class="grid-item" id="9x1">9x1</div>
+  <div class="grid-item" id="9x2">9x2</div>
+  <div class="grid-item" id="9x3">9x3</div>  
+  <div class="grid-item" id="9x4">9x4</div>
+  <div class="grid-item" id="9x5">9x5</div>
+  <div class="grid-item" id="9x6">9x6</div>  
+  <div class="grid-item" id="9x7">9x7</div>
+  <div class="grid-item" id="9x8">9x8</div>
+  <div class="grid-item" id="9x9">9x9</div>
 </div>
 </body>
 </html>
